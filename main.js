@@ -14,7 +14,7 @@ firstClassPlusBtn.addEventListener('click', function(){
 firstClassMinusBtn.addEventListener('click', function(){
   var firstTicketQuantity = parseFloat(document.getElementById('first-class-quantity').value);
   if(firstTicketQuantity == 0){
-    alert('minus ticket can not be bought');
+    alert('Negetive amount of ticket can not be bought');
   }
   else{
   updateQuantityAndSubtotal('first-class-quantity',150, -1);
@@ -31,7 +31,7 @@ economyClassPlusBtn.addEventListener('click', function(){
 economyClassMinusBtn.addEventListener('click', function(){
   var economyTicketQuantity = parseFloat(document.getElementById('economy-class-quantity').value);
   if(economyTicketQuantity == 0){
-    alert('minus ticket can not be bought');
+    alert('Negetive amount of ticket can not be bought');
   }
   else{
   updateQuantityAndSubtotal('economy-class-quantity',100, -1);
@@ -70,12 +70,24 @@ function updateTotal(){
 
 var bookingBtn = document.getElementById('book-now');
 bookingBtn.addEventListener('click', function(){
+  var firstTicketQuantity = parseFloat(document.getElementById('first-class-quantity').value);
+  var economyTicketQuantity = parseFloat(document.getElementById('economy-class-quantity').value);
   var total = parseFloat(document.getElementById('total').innerText);
   var alertContent = document.getElementById('alert-content');
+  var successContent = document.getElementById('success');
+  var totalTicket = firstTicketQuantity + economyTicketQuantity;
   if(total == 0){
-    alertContent.style.display = 'block';
+      alertContent.style.display = 'block';
+      setTimeout(function() {
+        alertContent.style.display = 'none';
+      }, 2000);
   }
   else{
-    return true;
+    var string = 'You bought a total of ' + totalTicket  + ' ticket and the cost is $' + total;
+    successContent.innerText = string;
+    successContent.style.display = 'block';
+    setTimeout(function() {
+      successContent.style.display = 'none';
+    }, 2500);
   }
 })
