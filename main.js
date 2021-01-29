@@ -3,6 +3,7 @@ const firstClassMinusBtn = document.getElementById('first-class-minus');
 const economyClassPlusBtn = document.getElementById('economy-class-plus');
 const economyClassMinusBtn = document.getElementById('economy-class-minus');
 
+// first class plus button
 firstClassPlusBtn.addEventListener('click', function(){
 
   updateQuantityAndSubtotal('first-class-quantity', 150, 1);
@@ -10,11 +11,11 @@ firstClassPlusBtn.addEventListener('click', function(){
   updateTotal();
  
 });
-
+// first class minus button
 firstClassMinusBtn.addEventListener('click', function(){
   var firstTicketQuantity = parseFloat(document.getElementById('first-class-quantity').value);
   if(firstTicketQuantity == 0){
-    alert('Negetive amount of ticket can not be bought');
+    alert('Negative amount of ticket can not be bought');
   }
   else{
   updateQuantityAndSubtotal('first-class-quantity',150, -1);
@@ -22,16 +23,18 @@ firstClassMinusBtn.addEventListener('click', function(){
   updateTotal();
   }
 });
-
+// economy class plus button
 economyClassPlusBtn.addEventListener('click', function(){
   updateQuantityAndSubtotal('economy-class-quantity',100, 1);
   updateTax();
   updateTotal();
-})
+});
+
+// economy class minus button
 economyClassMinusBtn.addEventListener('click', function(){
   var economyTicketQuantity = parseFloat(document.getElementById('economy-class-quantity').value);
   if(economyTicketQuantity == 0){
-    alert('Negetive amount of ticket can not be bought');
+    alert('Negative amount of ticket can not be bought');
   }
   else{
   updateQuantityAndSubtotal('economy-class-quantity',100, -1);
@@ -40,6 +43,8 @@ economyClassMinusBtn.addEventListener('click', function(){
   }
 });
 
+
+// function to update quantity and subtotal price, takes three parameters 
 
 function updateQuantityAndSubtotal(id, ticketPrice, ticketValue){
   
@@ -50,6 +55,7 @@ function updateQuantityAndSubtotal(id, ticketPrice, ticketValue){
   subtotal.innerText = parseFloat(subtotal.innerText) + (ticketPrice*ticketValue);
 };
 
+// function to update the tax amount
 function updateTax(){
   var subtotalNumber = parseFloat(document.getElementById('subtotal').innerText);
   var tax = document.getElementById('tax').innerText;
@@ -57,7 +63,7 @@ function updateTax(){
   document.getElementById('tax').innerText = (subtotalNumber*10)/100;
 
 };
-
+// function to update the subtotal amount
 function updateTotal(){
   var subtotalNumber = parseFloat(document.getElementById('subtotal').innerText);
   var taxNumber = parseFloat(document.getElementById('tax').innerText);
@@ -67,7 +73,7 @@ function updateTotal(){
 
 };
 
-
+// booking button shows success or failed data
 var bookingBtn = document.getElementById('book-now');
 bookingBtn.addEventListener('click', function(){
   var firstTicketQuantity = parseFloat(document.getElementById('first-class-quantity').value);
@@ -90,4 +96,4 @@ bookingBtn.addEventListener('click', function(){
       successContent.style.display = 'none';
     }, 2500);
   }
-})
+});
